@@ -1,0 +1,2 @@
+(function(){"use strict";const myLightdark=function(){const lightdark=document.querySelector("#lightdark");if(lightdark!=null){lightdark.addEventListener("click",function(){document.querySelector("html").classList.toggle("dark")})}}
+myLightdark()})()
