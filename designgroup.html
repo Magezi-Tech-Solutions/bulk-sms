@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Design Group</title>
+  <meta name="description" content="bulk sms">
+<link rel="icon" href="img/logo-wide.jfif">
+  <link rel="stylesheet" id="stylesheet" href="css/tailwind.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+</head>
+<body class="font-sans text-base font-normal text-gray-600 dark:text-gray-400 dark:bg-gray-800">
+  <!-- wrapper -->
+  <div x-data="{ open: false }" class="wrapper overflow-x-hidden bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40">
+    <nav id="sidebar-menu" x-description="Mobile menu" x-bind:aria-expanded="open" :class="{ 'w-64 md:w-0': open, 'w-0 md:w-64': !(open) }" class="fixed w-64 transition-all duration-500 ease-in-out h-screen bg-white dark:bg-gray-800 shadow-sm">
+      <div class="h-full overflow-y-auto scrollbars">
+        <!--logo-->
+        <div class="mh-18 text-center py-5">
+          <a href="index.html" class="relative">
+            <h2 class="text-2xl font-semibold text-gray-200 px-4 max-h-9 overflow-hidden hidden-compact">
+               <img class="inline-block w-7 h-auto mr-2 -mt-1" src="img/logo-wide.jfif" style="border-radius: 10%;"> 
+           <span class="text-gray-700 dark:text-gray-200">Magezi sms</span>
+			  </h2>
+          </a>
+        </div>
+
+        <!-- Sidebar menu -->
+        <ul id="side-menu" x-data="{selected:1}" class="w-full float-none flex flex-col font-medium pl-1.5">
+          <!-- dropdown -->
+          <li class="relative">
+            <a :class="{ 'text-indigo-500 dark:text-gray-300': selected == 1 }"  class="block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300" href="index.html">
+             
+               <i class="mr-2 fas fa-home"></i> 
+              <span>Dashboard</span>
+       
+          
+            </a>
+
+          </li>
+
+     
+          <li class="relative">
+            <a :class="{ 'text-indigo-500 dark:text-gray-300': selected == 2 }" @click="selected !== 2 ? selected = 2 : selected = null" class="block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300" href="javascript:;">
+           
+               <i class="mr-2 fas fa-file"></i> 
+              <span>Reports</span>
+              <!-- caret -->
+              <span class="inline-block float-right">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="transform transition duration-300 mt-1.5 bi bi-chevron-down" :class="{ 'rotate-0': selected == 2, '-rotate-90': !(selected == 2) }" width=".8rem" height=".8rem" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+          
+              </span>
+            </a>
+
+            <!-- dropdown menu -->
+            <ul x-show="selected == 2" x-transition:enter="transition-all duration-200 ease-out" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" class="block rounded rounded-t-none top-full z-50 pl-7 py-0.5 text-left mb-1 font-normal">
+              <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="allmessages.html"> <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline-block h-4 w-4 mr-2 bi bi-file-earmark-richtext" viewBox="0 0 16 16">
+                <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                <path d="M4.5 12.5A.5.5 0 0 1 5 12h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 10h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm1.639-3.708 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V8.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8s1.54-1.274 1.639-1.208zM6.25 6a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/>
+              </svg> All Messages</a>
+              </li>
+				 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="receivedmessages.html"> <i class="mr-2 fas fa-comment"></i>  Received messages</a>
+              </li>
+				 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="sentmessages.html"> <i class="mr-2 fas fa-paper-plane"></i> Sent Messages</a>
+              </li>
+				 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="campaigns.html"> <i class="mr-2 fas fa-users"></i> Campaigns</a>
+              </li>
+				
+				
+           </ul>
+          </li>
+ <li>
+            <a class="block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300" href="contacts.html">
+            
+               <i class="mr-2 fas fa-users"></i> 
+              <span>Contacts</span>
+            </a>
+          </li>
+
+ 
+          <li class="relative">
+            <a  :class="{ 'text-indigo-500 dark:text-gray-300': selected == 3 }" @click="selected !== 3 ? selected = 3 : selected = null" class="block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300" href="javascript:;">
+            
+               <i class="mr-2 fas fa-suitcase"></i> 
+              <span>Sending</span>
+              <!-- caret -->
+              <span class="inline-block float-right">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="transform transition duration-300 mt-1.5 bi bi-chevron-down" :class="{ 'rotate-0': selected == 3, '-rotate-90': !(selected == 3) }" width=".8rem" height=".8rem" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+                
+              </span>
+            </a>
+
+            <!-- dropdown menu -->
+            <ul x-show="selected == 3" x-transition:enter="transition-all duration-200 ease-out" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" class="block rounded rounded-t-none top-full z-50 pl-7 py-0.5 text-left mb-1 font-normal">
+              	 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="sendingservers.html"> <i class="mr-2 fas fa-comment"></i>  Sending Servers</a>
+              </li>
+				 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="senderid.html"> <i class="mr-2 fas fa-paper-plane"></i> Sender ID</a>
+              </li>
+				 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="numbers.html"> <i class="mr-2 fas fa-phone"></i> Numbers</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="keywords.html"> <i class="mr-2 fas fa-envelope"></i> Keywords</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="smstemplate.html"> <i class="mr-2 fas fa-image"></i> SMS Template</a>
+              </li>
+            </ul>
+          </li>
+ <li>
+            <a class="block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300" href="blacklists.html">
+            
+               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline-block h-4 w-4 mr-2 bi bi-file-earmark-richtext" viewBox="0 0 16 16">
+                <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                <path d="M4.5 12.5A.5.5 0 0 1 5 12h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 10h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm1.639-3.708 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V8.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8s1.54-1.274 1.639-1.208zM6.25 6a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/>
+              </svg>
+              <span>Blacklists</span>
+            </a>
+          </li>
+          <!-- dropdown -->
+          <li class="relative">
+            <a  :class="{ 'text-indigo-500 dark:text-gray-300': selected == 4 }" @click="selected !== 4 ? selected = 4 : selected = null" class="block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300" href="javascript:;">
+          
+               <i class="mr-2 fas fa-comment"></i> 
+              <span>SMS</span>
+              <!-- caret -->
+              <span class="inline-block float-right">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="transform transition duration-300 mt-1.5 bi bi-chevron-down" :class="{ 'rotate-0': selected == 4, '-rotate-90': !(selected == 4) }" width=".8rem" height=".8rem" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+               
+              </span>
+            </a>
+
+            <!-- dropdown menu -->
+            <ul x-show="selected == 4" x-transition:enter="transition-all duration-200 ease-out" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" class="block rounded rounded-t-none top-full z-50 pl-7 py-0.5 text-left mb-1 font-normal">
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="campaignbuilder.html"> <i class="mr-2 fas fa-gear"></i> Campaign Builder</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="quicksend.html"> <i class="mr-2 fas fa-paper-plane"></i> Quick Send</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="sendusingfile.html"> <i class="mr-2 fas fa-file"></i> Send Using File</a>
+              </li>
+           </ul>
+          </li>
+
+        <li class="relative">
+            <a  :class="{ 'text-indigo-500 dark:text-gray-300': selected == 5 }" @click="selected !== 5 ? selected = 5 : selected = null" class="block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300" href="javascript:;">
+          
+               <i class="mr-2 fas fa-record-vinyl"></i> 
+              <span>Voice</span>
+              <!-- caret -->
+              <span class="inline-block float-right">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="transform transition duration-300 mt-1.5 bi bi-chevron-down" :class="{ 'rotate-0': selected == 5, '-rotate-90': !(selected == 5) }" width=".8rem" height=".8rem" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+               
+              </span>
+            </a>
+
+            <!-- dropdown menu -->
+            <ul x-show="selected == 5" x-transition:enter="transition-all duration-200 ease-out" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" class="block rounded rounded-t-none top-full z-50 pl-7 py-0.5 text-left mb-1 font-normal">
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="campaignbuilder.html"> <i class="mr-2 fas fa-gear"></i> Campaign Builder</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="quicksend.html"> <i class="mr-2 fas fa-paper-plane"></i> Quick Send</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="sendusingfile.html"> <i class="mr-2 fas fa-file"></i> Send Using File</a>
+              </li>
+           </ul>
+          </li>
+
+       <li class="relative">
+            <a  :class="{ 'text-indigo-500 dark:text-gray-300': selected == 6 }" @click="selected !== 6 ? selected = 6 : selected = null" class="block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300" href="javascript:;">
+          
+               <i class="mr-2 fas fa-image"></i> 
+              <span>MMS</span>
+              <!-- caret -->
+              <span class="inline-block float-right">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="transform transition duration-300 mt-1.5 bi bi-chevron-down" :class="{ 'rotate-0': selected == 6, '-rotate-90': !(selected == 6) }" width=".8rem" height=".8rem" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+               
+              </span>
+            </a>
+
+            <!-- dropdown menu -->
+            <ul x-show="selected == 6" x-transition:enter="transition-all duration-200 ease-out" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" class="block rounded rounded-t-none top-full z-50 pl-7 py-0.5 text-left mb-1 font-normal">
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="campaignbuilder.html"> <i class="mr-2 fas fa-gear"></i> Campaign Builder</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="quicksend.html"> <i class="mr-2 fas fa-paper-plane"></i> Quick Send</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="sendusingfile.html"> <i class="mr-2 fas fa-file"></i> Send Using File</a>
+              </li>
+           </ul>
+          </li>
+
+			   <li class="relative">
+            <a  :class="{ 'text-indigo-500 dark:text-gray-300': selected == 7 }" @click="selected !== 7 ? selected = 7 : selected = null" class="block py-2.5 px-6 hover:text-indigo-500 dark:hover:text-gray-300" href="javascript:;">
+          
+               <i class="mr-2 fas fa-paper-plane"></i> 
+              <span>Whatsapp</span>
+              <!-- caret -->
+              <span class="inline-block float-right">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="transform transition duration-300 mt-1.5 bi bi-chevron-down" :class="{ 'rotate-0': selected == 7, '-rotate-90': !(selected == 7) }" width=".8rem" height=".8rem" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                </svg>
+               
+              </span>
+            </a>
+
+            <!-- dropdown menu -->
+            <ul x-show="selected == 7" x-transition:enter="transition-all duration-200 ease-out" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" class="block rounded rounded-t-none top-full z-50 pl-7 py-0.5 text-left mb-1 font-normal">
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="campaignbuilder.html"> <i class="mr-2 fas fa-gear"></i> Campaign Builder</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="quicksend.html"> <i class="mr-2 fas fa-paper-plane"></i> Quick Send</a>
+              </li>
+					 <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500 dark:hover:text-gray-300" href="sendusingfile.html"> <i class="mr-2 fas fa-file"></i> Send Using File</a>
+              </li>
+           </ul>
+          </li>
+
+       
+       </ul>
+
+        <!-- Banner -->
+        <div class="px-4 box-banner">
+         
+          <img src="img/icons/81148-new-message-notification.gif" style="width: 100px;border-radius: 100%;margin: 0 auto;">
+          
+        </div><!-- end banner -->
+      </div>
+    </nav>
+
+    <div x-bind:aria-expanded="open" :class="{ 'ml-64 -mr-64 md:ml-0 md:mr-0': open, 'ml-0 mr-0 md:ml-64': !(open) }" class="flex flex-col ml-64 min-h-screen transition-all duration-500 ease-in-out">
+      <!-- Navbar -->
+      <nav :class="{ 'left-64 -right-64 md:left-0 md:right-0': open, 'left-0 right-0 md:left-64': !(open) }" class="z-50 fixed flex flex-row flex-nowrap items-center justify-between mt-0 py-2 left-0 md:left-64 right-0 px-6 bg-white dark:bg-gray-800 shadow-sm transition-all duration-500 ease-in-out" id="desktop-menu">
+        <!-- sidenav button-->
+        <button id="navbartoggle" type="button" class="inline-flex items-center justify-center text-gray-800 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-200 focus:outline-none focus:ring-0" aria-controls="sidebar-menu" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
+          <span class="sr-only">Mobile menu</span>
+          <svg x-description="Icon open" x-state:on="Menu open" x-state:off="Menu closed" class="hidden h-8 w-8" :class="{ 'block': open, 'hidden': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path class="hidden md:block" fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            <path class="md:hidden" d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+
+          <svg x-description="Icon closed" x-state:on="Menu open" x-state:off="Menu closed" class="block h-8 w-8" :class="{ 'hidden': open, 'block': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
+            <path class="md:hidden" fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            <path class="hidden md:block" d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+          <!-- <i class="text-2xl fas fa-bars"></i> -->
+        </button>
+
+    
+        <!-- menu -->
+        <ul class="flex ml-auto mt-2 mt-0">
+   
+          <li x-data="{ open: false }" class="relative">
+          
+             <div class="py-3 px-6   ">
+                  <div class="flex flex-row">
+                    <div class="relative inline-block w-8   align-middle select-none transition duration-200 ease-in">
+                      <input type="checkbox" name="lightdark" id="lightdark" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white dark:bg-gray-900 border-2 dark:border-gray-700 appearance-none cursor-pointer"/>
+                      <label for="lightdark" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer"></label>
+                    </div>
+                    <p class="text-sm text-gray-500 self-center">Dark</p>
+                  </div>
+                </div>
+          
+        </li>
+
+       
+          <!-- notification -->
+          <li x-data="{ open: false }" class="relative">
+            <a href="javascript:;" class="block py-3 px-4 flex text-sm rounded-full focus:outline-none" id="notify" @click="open = ! open">
+              <div class="relative inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#1e2c95" class="w-6 h-6 bi bi-bell" viewBox="0 0 16 16">
+                  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                </svg>
+                <!-- <i class="text-2xl fas fa-bell"></i> -->
+                <span class="flex justify-center absolute -top-2 -right-1 text-center bg-indigo-500 px-1 text-white rounded-full text-xs"><span class="align-self-center">3</span></span>
+              </div>
+            </a>
+			  
+
+            <div x-show="open" @click.away="open = false" x-transition:enter="transition-all duration-200 ease-out" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition-all duration-200 ease-in" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="w-72 origin-top-right absolute right-0 rounded top-full z-50 py-0.5 text-left bg-white dark:bg-gray-800 border dark:border-gray-700 shadow-md" style="display: none;">
+              <div class="p-3 font-normal border-b border-gray-200 dark:border-gray-700">
+                <div class="relative">
+                  <div class="font-bold">Notifications</div>
+                  <div class="absolute top-0 right-0">
+                    <a href="#" class="inline-block mr-2" title="Clear all">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="#1e2c95" class="inline-block w-4 h-4 bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg>
+                      <!-- <i class="fas fa-trash-alt"></i> -->
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="max-h-60 overflow-y-auto scrollbars show">
+                <a class="relative" href="#">
+                  <div class="flex flex-wrap flex-row items-center border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:bg-opacity-40 dark:hover:bg-opacity-20 py-2 hover:bg-gray-100 bg-gray-50">
+                    <div class="flex-shrink max-w-full px-2 w-1/4 text-center">
+                      <div class="flex justify-center mx-auto w-8 h-8 rounded-full bg-indigo-500 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="self-center w-4 h-4 bi bi-calendar4-event" viewBox="0 0 16 16">
+                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
+                          <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        </svg>
+                        <!-- <i class="self-center fas fa-calendar"></i> -->
+                      </div>
+                    </div>
+                    <div class="flex-shrink max-w-full px-2 w-3/4">
+                      <div class="text-sm font-bold">Event will coming</div>
+                      <div class="text-gray-500 text-sm mt-1">Meeting with Mr.John Navas at:10.00Am</div>
+                      <div class="text-gray-500 text-sm mt-1">1h ago</div>
+                    </div>
+                  </div>
+                </a>
+                <a class="relative" href="#">
+                  <div class="flex flex-wrap flex-row items-center border-b border-gray-200 dark:border-gray-700 dark:hover:bg-gray-900 dark:hover:bg-opacity-20 py-2 hover:bg-gray-100">
+                    <div class="flex-shrink max-w-full px-2 w-1/4 text-center">
+                      <div class="flex justify-center mx-auto w-8 h-8 rounded-full bg-indigo-500 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="self-center w-4 h-4 bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                          <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                        </svg>
+                        <!-- <i class="self-center fas fa-thumbs-up"></i> -->
+                      </div>
+                    </div>
+                    <div class="flex-shrink max-w-full px-2 w-3/4">
+                      <div class="text-gray-500 text-sm mt-1"><b class="text-gray-600 dark:text-gray-400">Daniel</b> like your post: <b class="text-gray-600 dark:text-gray-400">Hello World!</b></div>
+                      <div class="text-gray-500 text-sm mt-1">3h ago</div>
+                    </div>
+                  </div>
+                </a>
+                <a class="relative" href="#">
+                  <div class="flex flex-wrap flex-row items-center border-b border-gray-200 dark:border-gray-700 dark:hover:bg-gray-900 dark:hover:bg-opacity-20 py-2 hover:bg-gray-100">
+                    <div class="flex-shrink max-w-full px-2 w-1/4 text-center">
+                      <div class="flex justify-center mx-auto w-8 h-8 rounded-full bg-indigo-500 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="self-center w-4 h-4 bi bi-hdd-stack" viewBox="0 0 16 16">
+                          <path d="M14 10a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h12zM2 9a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2H2z"/>
+                          <path d="M5 11.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM14 3a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
+                          <path d="M5 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                        </svg>
+                        <!-- <i class="self-center fas fa-server"></i> -->
+                      </div>
+                    </div>
+                    <div class="flex-shrink max-w-full px-2 w-3/4">
+                      <div class="text-sm font-bold">Server maintenance</div>
+                      <div class="text-gray-500 text-sm mt-1">Server maintenance at:07.00Am</div>
+                      <div class="text-gray-500 text-sm mt-1">8h ago</div>
+                    </div>
+                  </div>
+                </a>
+                <a class="relative" href="#">
+                  <div class="flex flex-wrap flex-row items-center border-b border-gray-200 dark:border-gray-700 dark:hover:bg-gray-900 dark:hover:bg-opacity-20 py-2 hover:bg-gray-100">
+                    <div class="flex-shrink max-w-full px-2 w-1/4 text-center">
+                      <div class="flex justify-center mx-auto w-8 h-8 rounded-full bg-indigo-500 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="self-center w-4 h-4 bi bi-chat-left" viewBox="0 0 16 16">
+                          <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        </svg>
+                        <!-- <i class="self-center fas fa-comment"></i> -->
+                      </div>
+                    </div>
+                    <div class="flex-shrink max-w-full px-2 w-3/4">
+                      <div class="text-gray-500 text-sm mt-1"><b class="text-gray-600 dark:text-gray-400">Carlos</b> comment in your post: <b class="text-gray-600 dark:text-gray-400">Hello World!</b></div>
+                      <div class="text-gray-500 text-sm mt-1">1d ago</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="p-3 text-center font-normal">
+                <a href="#" class="hover:underline">Show all Notifications</a>
+              </div>
+            </div>
+          </li>
+
+          <!-- profile -->
+          <li x-data="{ open: false }" class="relative">
+            <a href="javascript:;" class="px-3 flex text-sm rounded-full focus:outline-none" id="user-menu-button" @click="open = ! open">
+              <div class="relative">
+                <img class="h-10 w-10 rounded-full border border-gray-700 bg-gray-700" src="img/magezi.png" alt="avatar">
+                <span title="online" class="flex justify-center absolute -bottom-0.5 right-1 text-center bg-green-500 border border-white w-3 h-3 rounded-full"></span>
+              </div>
+              <span class="hidden md:block ml-1 self-center">Calvin Magezi</span>
+            </a>
+            <ul x-show="open" @click.away="open = false" x-transition:enter="transition-all duration-200 ease-out" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition-all duration-200 ease-in" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 rounded top-full z-50 py-0.5 text-left bg-white dark:bg-gray-800 border dark:border-gray-700 shadow-md" style="min-width:12rem;display: none;">
+         
+        
+              <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline mr-2 w-4 h-4 bi bi-gear" viewBox="0 0 16 16">
+                    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                  </svg>
+                  Profile
+                </a>
+              </li>
+   
+             
+              <li class="relative">
+                <a class="block w-full py-2 px-6 clear-both whitespace-nowrap hover:text-indigo-500" href="signin.html">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline mr-2 w-4 h-4 bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                    <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                  </svg>
+                  <!-- <i class="mr-2 fas fa-sign-out-alt"></i> --> Sign out
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- End Navbar -->
+
+      <main class="pt-20 -mt-2">
+				<div class="mx-auto p-2">
+					<!-- row -->
+					<div class="flex flex-wrap flex-row">
+						<div class="flex-shrink max-w-full px-4 w-full">   
+					    <p class="text-xl font-bold mt-3 mb-5">Design Group</p>
+					  </div>
+						
+						   
+   <div class="flex-shrink max-w-full px-4 w-full mb-6">
+              <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg h-full">
+                <div class="flex flex-wrap flex-row -mx-4">
+                  <div class="flex-shrink max-w-full px-4 w-full">
+                    <div class="md:flex md:justify-between">
+                      <div>
+                        <a href="newcontact.html" class="py-2 px-4 mb-3 block lg:inline-block text-center rounded leading-5 text-gray-100 bg-indigo-500 border border-indigo-500 hover:text-white hover:bg-indigo-600 hover:ring-0 hover:border-indigo-600 focus:bg-indigo-600 focus:border-indigo-600 focus:outline-none focus:ring-0">Add new <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="inline-block ml-1 bi bi-plus-lg" viewBox="0 0 16 16">
+                          <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"></path>
+                        </svg></a>
+                      </div>
+
+                      <div>
+                        <div id="bulk-actions">
+                          <label class="flex flex-wrap flex-row">
+                            <select id="bulk_actions" name="bulk_actions" class="inline-block leading-5 relative py-2 pl-3 pr-8 mb-3 rounded bg-gray-100 border border-gray-200 overflow-x-auto focus:outline-none focus:border-gray-300 focus:ring-0 dark:text-gray-300 dark:bg-gray-700 dark:border-gray-700 dark:focus:border-gray-600 select-caret appearance-none">
+                              <option value="" data-dialog-content="">Status</option>
+                              <option value="complete">Online</option>
+                              <option value="processing">Offline</option>
+                              
+                            </select>        
+                            <input type="submit" id="bulk_apply" class="ml-2 py-2 px-4 inline-block text-center mb-3 rounded leading-5 border hover:bg-gray-300 dark:bg-gray-900 dark:bg-opacity-40 dark:border-gray-800 dark:hover:bg-gray-900 focus:outline-none focus:ring-0 cursor-pointer" value="Apply">
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w-full mb-6 overflow-x-auto">
+                      <table class="table-sorter table-bordered w-full text-left text-gray-600 dark:text-gray-400">
+                        <thead>
+                          <tr class="bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40">
+                            <th data-sortable="false"><input id="checkall" type="checkbox" class="form-checkbox w-4 h-4 text-indigo-500 border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-700"></th>
+                            <th class="hidden lg:table-cell">Contacts</th>
+                            <th>Name</th>
+                            <th class="hidden lg:table-cell">Created</th>
+                            <th class="hidden lg:table-cell">Group</th>
+                            <th class="hidden lg:table-cell">Status</th>
+                           
+                            <th data-sortable="false">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="border-b dark:border-gray-700">
+                            <td><input type="checkbox" class="form-checkbox w-4 h-4 text-indigo-500 border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-700"></td>
+                            <td class="hidden lg:table-cell">+8801699164244</td>
+                            <td>
+                              <a href="#">
+                                <div class="flex flex-wrap flex-row items-center">
+                                  <div class="self-center"><img class="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-600" src="img/avatar/avatar2.png"></div>
+                                  <div class="leading-5 dark:text-gray-300 flex-1 ml-2 mb-1">  
+                                    Tia Cassin
+                                  </div>
+                                </div>
+                              </a>
+                            </td>
+                            <td class="hidden lg:table-cell">27/05/2022</td>
+                            <td class="hidden lg:table-cell">design-group</td>
+                            <td class="hidden lg:table-cell">
+                              <span class="text-sm px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">Online</span>
+                            </td>
+                   
+                            <td class="text-center">
+							<a href="message.html" class="inline-block mr-2 hover:text-green-500" title="Message">
+                               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M775.3 248.9a369.62 369.62 0 0 0-119-80A370.2 370.2 0 0 0 512.1 140h-1.7c-99.7.4-193 39.4-262.8 109.9c-69.9 70.5-108 164.1-107.6 263.8c.3 60.3 15.3 120.2 43.5 173.1l4.5 8.4V836h140.8l8.4 4.5c52.9 28.2 112.8 43.2 173.1 43.5h1.7c99 0 192-38.2 262.1-107.6c70.4-69.8 109.5-163.1 110.1-262.7c.2-50.6-9.5-99.6-28.9-145.8a370.15 370.15 0 0 0-80-119zM312 560a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96z" fill-opacity=".15" fill="currentColor"/><path d="M664 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm-400 0a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/><path d="M925.2 338.4c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 0 0-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 0 0-142 96.5c-40.9 41.3-73 89.3-95.2 142.8c-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 0 0 112 714v152a46 46 0 0 0 46 46h152.1A449.4 449.4 0 0 0 510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 0 0 142.8-95.2c41.3-40.9 73.8-88.7 96.5-142c23.6-55.2 35.6-113.9 35.9-174.5c.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8c69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9c44.6 18.7 84.6 45.6 119 80c34.3 34.3 61.3 74.4 80 119c19.4 46.2 29.1 95.2 28.9 145.8c-.6 99.6-39.7 192.9-110.1 262.7z" fill="currentColor"/><path d="M464 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/></svg>
+                              </a>
+                           
+								     <a href="editcontact.html" class="inline-block mr-2 hover:text-green-500" title="Edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                </svg>
+                              </a>
+						
+                              <a href="javascript:;" class="inline-block mr-2 hover:text-red-500" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                </svg>
+                              </a>
+                          </td>
+                          </tr>
+               <tr class="border-b dark:border-gray-700">
+                            <td><input type="checkbox" class="form-checkbox w-4 h-4 text-indigo-500 border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-700"></td>
+                            <td class="hidden lg:table-cell">+2541698164244</td>
+                            <td>
+                              <a href="#">
+                                <div class="flex flex-wrap flex-row items-center">
+                                  <div class="self-center"><img class="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-600" src="img/avatar/avatar.png"></div>
+                                  <div class="leading-5 dark:text-gray-300 flex-1 ml-2 mb-1">  
+                                    Gus Dibbert
+                                  </div>
+                                </div>
+                              </a>
+                            </td>
+                            <td class="hidden lg:table-cell">27/05/2022</td>
+				   <td class="hidden lg:table-cell">design-group</td>
+                            <td class="hidden lg:table-cell">
+                              <span class="text-sm px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">Online</span>
+                            </td>
+                   
+                            <td class="text-center">
+							<a href="message.html" class="inline-block mr-2 hover:text-green-500" title="Message">
+                               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M775.3 248.9a369.62 369.62 0 0 0-119-80A370.2 370.2 0 0 0 512.1 140h-1.7c-99.7.4-193 39.4-262.8 109.9c-69.9 70.5-108 164.1-107.6 263.8c.3 60.3 15.3 120.2 43.5 173.1l4.5 8.4V836h140.8l8.4 4.5c52.9 28.2 112.8 43.2 173.1 43.5h1.7c99 0 192-38.2 262.1-107.6c70.4-69.8 109.5-163.1 110.1-262.7c.2-50.6-9.5-99.6-28.9-145.8a370.15 370.15 0 0 0-80-119zM312 560a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96z" fill-opacity=".15" fill="currentColor"/><path d="M664 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm-400 0a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/><path d="M925.2 338.4c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 0 0-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 0 0-142 96.5c-40.9 41.3-73 89.3-95.2 142.8c-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 0 0 112 714v152a46 46 0 0 0 46 46h152.1A449.4 449.4 0 0 0 510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 0 0 142.8-95.2c41.3-40.9 73.8-88.7 96.5-142c23.6-55.2 35.6-113.9 35.9-174.5c.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8c69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9c44.6 18.7 84.6 45.6 119 80c34.3 34.3 61.3 74.4 80 119c19.4 46.2 29.1 95.2 28.9 145.8c-.6 99.6-39.7 192.9-110.1 262.7z" fill="currentColor"/><path d="M464 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/></svg>
+                              </a>
+                           
+								     <a href="editcontact.html" class="inline-block mr-2 hover:text-green-500" title="Edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                </svg>
+                              </a>
+						
+                              <a href="javascript:;" class="inline-block mr-2 hover:text-red-500" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                </svg>
+                              </a>
+                          </td>
+                          </tr>
+              
+					  <tr class="border-b dark:border-gray-700">
+                            <td><input type="checkbox" class="form-checkbox w-4 h-4 text-indigo-500 border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-700"></td>
+                            <td class="hidden lg:table-cell">+254342256789</td>
+                            <td>
+                              <a href="#">
+                                <div class="flex flex-wrap flex-row items-center">
+                                  <div class="self-center"><img class="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-600" src="img/avatar/avatar3.png"></div>
+                                  <div class="leading-5 dark:text-gray-300 flex-1 ml-2 mb-1">  
+                                    Nova Mayer
+                                  </div>
+                                </div>
+                              </a>
+                            </td>
+                            <td class="hidden lg:table-cell">27/05/2022</td>
+				   <td class="hidden lg:table-cell">design-group</td>
+                            <td class="hidden lg:table-cell">
+                              <span class="text-sm px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">Online</span>
+                            </td>
+                   
+                            <td class="text-center">
+							<a href="message.html" class="inline-block mr-2 hover:text-green-500" title="Message">
+                               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M775.3 248.9a369.62 369.62 0 0 0-119-80A370.2 370.2 0 0 0 512.1 140h-1.7c-99.7.4-193 39.4-262.8 109.9c-69.9 70.5-108 164.1-107.6 263.8c.3 60.3 15.3 120.2 43.5 173.1l4.5 8.4V836h140.8l8.4 4.5c52.9 28.2 112.8 43.2 173.1 43.5h1.7c99 0 192-38.2 262.1-107.6c70.4-69.8 109.5-163.1 110.1-262.7c.2-50.6-9.5-99.6-28.9-145.8a370.15 370.15 0 0 0-80-119zM312 560a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96z" fill-opacity=".15" fill="currentColor"/><path d="M664 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm-400 0a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/><path d="M925.2 338.4c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 0 0-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 0 0-142 96.5c-40.9 41.3-73 89.3-95.2 142.8c-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 0 0 112 714v152a46 46 0 0 0 46 46h152.1A449.4 449.4 0 0 0 510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 0 0 142.8-95.2c41.3-40.9 73.8-88.7 96.5-142c23.6-55.2 35.6-113.9 35.9-174.5c.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8c69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9c44.6 18.7 84.6 45.6 119 80c34.3 34.3 61.3 74.4 80 119c19.4 46.2 29.1 95.2 28.9 145.8c-.6 99.6-39.7 192.9-110.1 262.7z" fill="currentColor"/><path d="M464 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/></svg>
+                              </a>
+                           
+								     <a href="editcontact.html" class="inline-block mr-2 hover:text-green-500" title="Edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                </svg>
+                              </a>
+						
+                              <a href="javascript:;" class="inline-block mr-2 hover:text-red-500" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                </svg>
+                              </a>
+                          </td>
+                          </tr>
+              
+					  <tr class="border-b dark:border-gray-700">
+                            <td><input type="checkbox" class="form-checkbox w-4 h-4 text-indigo-500 border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-700"></td>
+                            <td class="hidden lg:table-cell">+254342256789</td>
+                            <td>
+                              <a href="#">
+                                <div class="flex flex-wrap flex-row items-center">
+                                  <div class="self-center"><img class="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-600" src="img/avatar/avatar4.png"></div>
+                                  <div class="leading-5 dark:text-gray-300 flex-1 ml-2 mb-1">  
+                                    Nova Mayer
+                                  </div>
+                                </div>
+                              </a>
+                            </td>
+                            <td class="hidden lg:table-cell">27/05/2022</td>
+				   <td class="hidden lg:table-cell">design-group</td>
+                            <td class="hidden lg:table-cell">
+                              <span class="text-sm px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">Offline</span>
+                            </td>
+                   
+                            <td class="text-center">
+							<a href="message.html" class="inline-block mr-2 hover:text-green-500" title="Message">
+                               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M775.3 248.9a369.62 369.62 0 0 0-119-80A370.2 370.2 0 0 0 512.1 140h-1.7c-99.7.4-193 39.4-262.8 109.9c-69.9 70.5-108 164.1-107.6 263.8c.3 60.3 15.3 120.2 43.5 173.1l4.5 8.4V836h140.8l8.4 4.5c52.9 28.2 112.8 43.2 173.1 43.5h1.7c99 0 192-38.2 262.1-107.6c70.4-69.8 109.5-163.1 110.1-262.7c.2-50.6-9.5-99.6-28.9-145.8a370.15 370.15 0 0 0-80-119zM312 560a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96z" fill-opacity=".15" fill="currentColor"/><path d="M664 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm-400 0a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/><path d="M925.2 338.4c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 0 0-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 0 0-142 96.5c-40.9 41.3-73 89.3-95.2 142.8c-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 0 0 112 714v152a46 46 0 0 0 46 46h152.1A449.4 449.4 0 0 0 510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 0 0 142.8-95.2c41.3-40.9 73.8-88.7 96.5-142c23.6-55.2 35.6-113.9 35.9-174.5c.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8c69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9c44.6 18.7 84.6 45.6 119 80c34.3 34.3 61.3 74.4 80 119c19.4 46.2 29.1 95.2 28.9 145.8c-.6 99.6-39.7 192.9-110.1 262.7z" fill="currentColor"/><path d="M464 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/></svg>
+                              </a>
+                           
+								     <a href="editcontact.html" class="inline-block mr-2 hover:text-green-500" title="Edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                </svg>
+                              </a>
+						
+                              <a href="javascript:;" class="inline-block mr-2 hover:text-red-500" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                </svg>
+                              </a>
+                          </td>
+                          </tr>
+              		  					  <tr class="border-b dark:border-gray-700">
+                            <td><input type="checkbox" class="form-checkbox w-4 h-4 text-indigo-500 border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-700"></td>
+                            <td class="hidden lg:table-cell">+256785634444</td>
+                            <td>
+                              <a href="#">
+                                <div class="flex flex-wrap flex-row items-center">
+                                  <div class="self-center"><img class="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-600" src="img/avatar/avatar5.png"></div>
+                                  <div class="leading-5 dark:text-gray-300 flex-1 ml-2 mb-1">  
+                                    Aron Crona
+                                  </div>
+                                </div>
+                              </a>
+                            </td>
+                            <td class="hidden lg:table-cell">27/05/2022</td>
+				   <td class="hidden lg:table-cell">design-group</td>
+                            <td class="hidden lg:table-cell">
+                              <span class="text-sm px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">Online</span>
+                            </td>
+                   
+                            <td class="text-center">
+							<a href="message.html" class="inline-block mr-2 hover:text-green-500" title="Message">
+                               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M775.3 248.9a369.62 369.62 0 0 0-119-80A370.2 370.2 0 0 0 512.1 140h-1.7c-99.7.4-193 39.4-262.8 109.9c-69.9 70.5-108 164.1-107.6 263.8c.3 60.3 15.3 120.2 43.5 173.1l4.5 8.4V836h140.8l8.4 4.5c52.9 28.2 112.8 43.2 173.1 43.5h1.7c99 0 192-38.2 262.1-107.6c70.4-69.8 109.5-163.1 110.1-262.7c.2-50.6-9.5-99.6-28.9-145.8a370.15 370.15 0 0 0-80-119zM312 560a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96z" fill-opacity=".15" fill="currentColor"/><path d="M664 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm-400 0a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/><path d="M925.2 338.4c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 0 0-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 0 0-142 96.5c-40.9 41.3-73 89.3-95.2 142.8c-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 0 0 112 714v152a46 46 0 0 0 46 46h152.1A449.4 449.4 0 0 0 510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 0 0 142.8-95.2c41.3-40.9 73.8-88.7 96.5-142c23.6-55.2 35.6-113.9 35.9-174.5c.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8c69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9c44.6 18.7 84.6 45.6 119 80c34.3 34.3 61.3 74.4 80 119c19.4 46.2 29.1 95.2 28.9 145.8c-.6 99.6-39.7 192.9-110.1 262.7z" fill="currentColor"/><path d="M464 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/></svg>
+                              </a>
+                           
+								     <a href="editcontact.html" class="inline-block mr-2 hover:text-green-500" title="Edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                </svg>
+                              </a>
+						
+                              <a href="javascript:;" class="inline-block mr-2 hover:text-red-500" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                </svg>
+                              </a>
+                          </td>
+                          </tr>
+ 
+							 					  <tr class="border-b dark:border-gray-700">
+                            <td><input type="checkbox" class="form-checkbox w-4 h-4 text-indigo-500 border border-gray-300 rounded dark:bg-gray-700 dark:border-gray-700"></td>
+                            <td class="hidden lg:table-cell">+256785634444</td>
+                            <td>
+                              <a href="#">
+                                <div class="flex flex-wrap flex-row items-center">
+                                  <div class="self-center"><img class="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-600" src="img/avatar/avatar7.png"></div>
+                                  <div class="leading-5 dark:text-gray-300 flex-1 ml-2 mb-1">  
+                                    Theresa Kozey
+                                  </div>
+                                </div>
+                              </a>
+                            </td>
+                            <td class="hidden lg:table-cell">27/05/2022</td>
+				   <td class="hidden lg:table-cell">design-group</td>
+                            <td class="hidden lg:table-cell">
+                              <span class="text-sm px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full">Offline</span>
+                            </td>
+                   
+                            <td class="text-center">
+							<a href="message.html" class="inline-block mr-2 hover:text-green-500" title="Message">
+                               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M775.3 248.9a369.62 369.62 0 0 0-119-80A370.2 370.2 0 0 0 512.1 140h-1.7c-99.7.4-193 39.4-262.8 109.9c-69.9 70.5-108 164.1-107.6 263.8c.3 60.3 15.3 120.2 43.5 173.1l4.5 8.4V836h140.8l8.4 4.5c52.9 28.2 112.8 43.2 173.1 43.5h1.7c99 0 192-38.2 262.1-107.6c70.4-69.8 109.5-163.1 110.1-262.7c.2-50.6-9.5-99.6-28.9-145.8a370.15 370.15 0 0 0-80-119zM312 560a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96zm200 0a48.01 48.01 0 0 1 0-96a48.01 48.01 0 0 1 0 96z" fill-opacity=".15" fill="currentColor"/><path d="M664 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0zm-400 0a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/><path d="M925.2 338.4c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 0 0-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 0 0-142 96.5c-40.9 41.3-73 89.3-95.2 142.8c-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 0 0 112 714v152a46 46 0 0 0 46 46h152.1A449.4 449.4 0 0 0 510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 0 0 142.8-95.2c41.3-40.9 73.8-88.7 96.5-142c23.6-55.2 35.6-113.9 35.9-174.5c.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8c69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9c44.6 18.7 84.6 45.6 119 80c34.3 34.3 61.3 74.4 80 119c19.4 46.2 29.1 95.2 28.9 145.8c-.6 99.6-39.7 192.9-110.1 262.7z" fill="currentColor"/><path d="M464 512a48 48 0 1 0 96 0a48 48 0 1 0-96 0z" fill="currentColor"/></svg>
+                              </a>
+                           
+								     <a href="editcontact.html" class="inline-block mr-2 hover:text-green-500" title="Edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                </svg>
+                              </a>
+						
+                              <a href="javascript:;" class="inline-block mr-2 hover:text-red-500" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                </svg>
+                              </a>
+                          </td>
+                          </tr>
+ <!--pagination-->
+												  <tr><div class="container flex mb-8">
+    <ul class="flex">
+        <li><button
+                class="h-10 px-5 text-gray-600 bg-white border border-r-0 border-gray-600 hover:bg-gray-100">Prev</button>
+        </li>
+        <li><button class="h-10 px-5 text-gray-600 bg-white border border-r-0 border-gray-600 ">1</button>
+        </li>
+        <li><button
+                class="h-10 px-5 text-gray-600 bg-white border border-r-0 border-gray-600 hover:bg-gray-100">2</button>
+        </li>
+        <li><button class="h-10 px-5 text-white bg-gray-600 border border-r-0 border-gray-600 ">3</button>
+        </li>
+        <li><button class="h-10 px-5 text-gray-600 bg-white border border-gray-600 hover:bg-gray-100">Next</button>
+        </li>
+    </ul>
+</div></tr>
+<!--pagination-->
+							
+				
+							
+						  </tbody>
+                      </table>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+						
+			
+					</div>
+					
+							    
+			</div>
+			</main>
+
+      <footer class="bg-white dark:bg-gray-800 p-6 shadow-sm">
+        <div class="mx-auto">
+          <div class="flex flex-wrap flex-row -mx-4">
+            <div class="flex-shrink max-w-full px-4 w-full md:w-1/2 text-center md:text-left">
+              <ul class="pl-0">
+
+                <li class="inline-block mr-3">
+                  <a class="hover:text-indigo-500" href="#">Privacy</a>
+                </li>
+                <li class="inline-block mr-3">
+                  <a class="hover:text-indigo-500" href="#">Terms of Service</a>
+                </li>
+              </ul>
+            </div>
+            <div class="flex-shrink max-w-full px-4 w-full md:w-1/2 text-center md:text-right">
+              <p class="mb-0 mt-3 md:mt-0">
+                <a  class="hover:text-indigo-500">Magezi Sms</a> | All right reserved
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/alpine.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+
+</html>
